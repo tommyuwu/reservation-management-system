@@ -12,16 +12,16 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="user", schema="sgr")
+@Table(name="usuario")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class User {
+public class Usuario {
 
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     @Column(name="id")
-    private int id;
+    private Long id;
 
     @Column(name="email")
     private String email;

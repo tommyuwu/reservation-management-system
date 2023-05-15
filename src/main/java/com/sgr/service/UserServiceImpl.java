@@ -1,7 +1,7 @@
 package com.sgr.service;
 
 import com.sgr.dao.UserDAO;
-import com.sgr.entity.User;
+import com.sgr.entity.Usuario;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -14,18 +14,18 @@ public class UserServiceImpl implements UserService {
     private final UserDAO userDAO;
 
     @Override
-    public List<User> findAll() {
+    public List<Usuario> findAll() {
         return userDAO.findAll();
     }
 
     @Override
-    public User findById(int id) {
+    public Usuario findById(int id) {
         return userDAO.findById(id);
     }
 
     @Override
-    public void save(User user) {
-        userDAO.save(user);
+    public void save(Usuario usuario) {
+        userDAO.save(usuario);
 
     }
 
@@ -34,4 +34,8 @@ public class UserServiceImpl implements UserService {
         userDAO.deleteById(id);
     }
 
+    @Override
+    public void update(Long id, Usuario usuario) {
+        userDAO.update(id, usuario);
+    }
 }

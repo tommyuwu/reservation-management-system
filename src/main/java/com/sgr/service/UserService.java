@@ -2,15 +2,17 @@ package com.sgr.service;
 
 import java.util.List;
 
-import com.sgr.entity.User;
+import com.sgr.entity.Usuario;
 
 public interface UserService {
 
-    List<User> findAll();
+    List<Usuario> findAll();
 
-    User findById(int id);
+    Usuario findById(int id);
 
-    void save(User user);
+    void save(Usuario usuario);
 
     void deleteById(int id);
+
+    void update(Long id, Usuario usuario);
 }

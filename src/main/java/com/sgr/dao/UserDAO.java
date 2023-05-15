@@ -2,15 +2,17 @@ package com.sgr.dao;
 
 import java.util.List;
 
-import com.sgr.entity.User;
+import com.sgr.entity.Usuario;
 
 public interface UserDAO {
 
-    public List<User> findAll();
+    List<Usuario> findAll();
 
-    public User findById(int id);
+    Usuario findById(int id);
 
-    public void save(User user);
+    void save(Usuario usuario);
 
-    public void deleteById(int id);
+    void deleteById(int id);
+
+    void update(Long id, Usuario usuario);
 }
