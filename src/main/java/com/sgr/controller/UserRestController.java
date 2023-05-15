@@ -3,7 +3,7 @@ package com.sgr.controller;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -19,12 +19,11 @@ import com.sgr.service.UserService;
 //Indiciamos que es un controlador rest
 @RestController
 @RequestMapping("/api") //esta sera la raiz de la url, es decir http://127.0.0.1:8080/api/
-
+@AllArgsConstructor
 public class UserRestController {
 
     //Inyectamos el servicio para poder hacer uso de el
-    @Autowired
-    private UserService userService;
+    private final UserService userService;
 
     /*Este método se hará cuando por una petición GET (como indica la anotación) se llame a la url 
     http://127.0.0.1:8080/api/users*/

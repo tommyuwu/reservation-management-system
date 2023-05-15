@@ -1,22 +1,20 @@
 package com.sgr.dao;
 
-import java.util.List;
+import com.sgr.entity.User;
+import lombok.AllArgsConstructor;
+import org.hibernate.Session;
+import org.hibernate.query.Query;
+import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
 import javax.transaction.Transactional;
-
-import org.hibernate.Session;
-import org.hibernate.query.Query;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
-
-import com.sgr.entity.User;
+import java.util.List;
 
 @Repository
+@AllArgsConstructor
 public class UserDAOImpl implements UserDAO{
 
-    @Autowired
-    private EntityManager entityManager;
+    private final EntityManager entityManager;
 
     @Override
     public List<User> findAll() {
@@ -24,9 +22,7 @@ public class UserDAOImpl implements UserDAO{
 
         Query<User> theQuery = currentSession.createQuery("from User", User.class);
 
-        List<User> users = theQuery.getResultList();
-
-        return users;
+        return theQuery.getResultList();
 
     }
 
@@ -34,9 +30,7 @@ public class UserDAOImpl implements UserDAO{
     public User findById(int id) {
         Session currentSession = entityManager.unwrap(Session.class);
 
-        User user = currentSession.get(User.class, id);
-
-        return user;
+        return currentSession.get(User.class, id);
     }
 
     @Override

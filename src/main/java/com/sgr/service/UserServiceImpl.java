@@ -1,29 +1,26 @@
 package com.sgr.service;
 
-import java.util.List;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
 import com.sgr.dao.UserDAO;
 import com.sgr.entity.User;
+import lombok.AllArgsConstructor;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
+@AllArgsConstructor
 public class UserServiceImpl implements UserService {
 
-    @Autowired
-    private UserDAO userDAO;
+    private final UserDAO userDAO;
 
     @Override
     public List<User> findAll() {
-        List<User> listUsers= userDAO.findAll();
-        return listUsers;
+        return userDAO.findAll();
     }
 
     @Override
     public User findById(int id) {
-        User user = userDAO.findById(id);
-        return user;
+        return userDAO.findById(id);
     }
 
     @Override

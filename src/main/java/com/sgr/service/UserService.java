@@ -6,11 +6,11 @@ import com.sgr.entity.User;
 
 public interface UserService {
 
-    public List<User> findAll();
+    List<User> findAll();
 
-    public User findById(int id);
+    User findById(int id);
 
-    public void save(User user);
+    void save(User user);
 
-    public void deleteById(int id);
+    void deleteById(int id);
 }
