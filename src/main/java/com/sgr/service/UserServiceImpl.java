@@ -19,7 +19,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public Usuario findById(int id) {
+    public Usuario findById(Long id) {
         return userDAO.findById(id);
     }
 
@@ -30,7 +30,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void deleteById(int id) {
+    public void deleteById(Long id) {
         userDAO.deleteById(id);
     }
 

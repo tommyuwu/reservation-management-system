@@ -27,7 +27,7 @@ public class UserDAOImpl implements UserDAO{
     }
 
     @Override
-    public Usuario findById(int id) {
+    public Usuario findById(Long id) {
         Session currentSession = entityManager.unwrap(Session.class);
 
         return currentSession.get(Usuario.class, id);
@@ -43,7 +43,7 @@ public class UserDAOImpl implements UserDAO{
 
     @Override
     @Transactional
-    public void deleteById(int id) {
+    public void deleteById(Long id) {
         Session currentSession = entityManager.unwrap(Session.class);
 
         Query<Usuario> theQuery = currentSession.createQuery("delete from Usuario where id=:idUser");

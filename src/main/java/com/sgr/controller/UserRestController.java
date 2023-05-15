@@ -36,7 +36,7 @@ public class UserRestController {
     /*Este método se hará cuando por una petición GET (como indica la anotación) se llame a la url + el id de un usuario
     http://127.0.0.1:8080/api/users/1*/
     @GetMapping("/users/{userId}")
-    public Usuario getUser(@PathVariable int userId){
+    public Usuario getUser(@PathVariable Long userId){
         Usuario usuario = userService.findById(userId);
 
         if(usuario == null) {
@@ -73,7 +73,7 @@ public class UserRestController {
     /*Este método se hará cuando por una petición DELETE (como indica la anotación) se llame a la url + id del usuario
     http://127.0.0.1:8080/api/users/1  */
     @DeleteMapping("users/{userId}")
-    public String deteteUser(@PathVariable int userId) {
+    public String deteteUser(@PathVariable Long userId) {
 
         Usuario usuario = userService.findById(userId);
 
