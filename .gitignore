@@ -33,4 +33,4 @@ build/
 .vscode/
 
 ### para no pifiar propiedades
-src/main/resources/application.properties
+!**/src/main/resources/application.properties
