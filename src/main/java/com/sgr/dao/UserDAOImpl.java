@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
 import javax.transaction.Transactional;
+//import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 @Repository
@@ -34,14 +35,27 @@ public class UserDAOImpl implements UserDAO{
     }
 
     @Override
+    @Transactional
     public void save(Usuario usuario) {
         Session currentSession = entityManager.unwrap(Session.class);
-
-        currentSession.saveOrUpdate(usuario);
-
+        System.out.println("UserDAOImpl - usuario a crear: "+usuario.toString());
+        currentSession.save(usuario);
+        /*if(userHasValidUsername(usuario)) {
+        	currentSession.save(usuario);
+        	System.out.println("UserDAOImpl - usuario creado");
+        }else {
+        	System.out.println("UserDAOImpl - ya existe un usuario con ese nombre");
+        }*/
+        	
+        
     }
 
-    @Override
+    private boolean userHasValidUsername(Usuario usuario) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
     @Transactional
     public void deleteById(Long id) {
         Session currentSession = entityManager.unwrap(Session.class);

@@ -22,7 +22,6 @@ import com.sgr.service.UserService;
 @AllArgsConstructor
 public class UserRestController {
 
-    //Inyectamos el servicio para poder hacer uso de el
     private final UserService userService;
 
     /*Este método se hará cuando por una petición GET (como indica la anotación) se llame a la url 

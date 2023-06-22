@@ -25,6 +25,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void save(Usuario usuario) {
+    	System.out.println("usuario a crear/actualizar: "+usuario.toString());
         userDAO.save(usuario);
 
     }
