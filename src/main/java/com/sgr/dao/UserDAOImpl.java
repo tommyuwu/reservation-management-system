@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
 import javax.transaction.Transactional;
+//import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 @Repository
@@ -29,19 +30,38 @@ public class UserDAOImpl implements UserDAO{
     @Override
     public Usuario findById(Long id) {
         Session currentSession = entityManager.unwrap(Session.class);
-
+        
         return currentSession.get(Usuario.class, id);
     }
+    
+    List<Usuario> findUsersByUsername() {
+		return null;
+	}
 
     @Override
-    public void save(Usuario usuario) {
+    @Transactional
+    public String save(Usuario usuario) {
+    	String response;
         Session currentSession = entityManager.unwrap(Session.class);
-
-        currentSession.saveOrUpdate(usuario);
-
+        System.out.println("UserDAOImpl - usuario a crear: "+usuario.toString());
+        if(!userExistsWithUsername(currentSession, usuario.getUsername())) {
+        	currentSession.save(usuario);
+        	System.out.println("UserDAOImpl - usuario creado");
+        	response = "Usuario creado exitosamente: "+usuario.toString();
+        }else {
+        	System.out.println("UserDAOImpl - ya existe un usuario con ese nombre");
+        	response = "Ya existe un usuario con ese nombre";
+        }
+        return response;
     }
-
-    @Override
+    
+    private boolean userExistsWithUsername(Session currentSession, String username) {
+    	Query<Usuario> theQuery = currentSession.createQuery("select id from Usuario where username=:username");
+    	theQuery.setParameter("username", username);
+		return !theQuery.getResultList().isEmpty();
+	}
+    
+	@Override
     @Transactional
     public void deleteById(Long id) {
         Session currentSession = entityManager.unwrap(Session.class);
