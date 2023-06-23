@@ -3,7 +3,6 @@ package com.sgr.entity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.NonNull;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -11,6 +10,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name="usuario")
@@ -25,23 +27,19 @@ public class Usuario {
     private Long id;
     
     @Column(name="username")
-    @NonNull
+    @NotBlank
     private String username;
     
     @Column(name="email")
+    @NotBlank
+    @Email
     private String email;
 
     @Column(name="password")
-    @NonNull
+    @NotBlank
     private String password;
     
     @Column(name="rol")
-    @NonNull
-    private String rol;
-
-	@Override
-	public String toString() {
-		return "User [id=" + id + ", username=" + username+ ", email=" + email + ", password=" + password + ", rol=" + rol + "]";
-	}
-
+    @NotNull
+    private Rol rol;
 }
