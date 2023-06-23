@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.sgr.service.UserService;
@@ -48,14 +49,16 @@ public class UserRestController {
     /*Este método se hará cuando por una petición POST (como indica la anotación) se llame a la url
     http://127.0.0.1:8080/api/users/  */
     @PostMapping("/users")
-    public Usuario addUser(@RequestBody Usuario usuario) {
+    public String addUser(@RequestBody Usuario usuario) {
 
         //Este metodo guardará al usuario enviado
-        userService.save(usuario);
+        String response = userService.save(usuario);
 
-        return usuario;
+        return response;
 
     }
+    
+    
     /*Este método se hará cuando por una petición PUT (como indica la anotación) se llame a la url
     http://127.0.0.1:8080/api/users/  */
     @PutMapping("/users/{id}")

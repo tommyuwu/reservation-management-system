@@ -30,31 +30,37 @@ public class UserDAOImpl implements UserDAO{
     @Override
     public Usuario findById(Long id) {
         Session currentSession = entityManager.unwrap(Session.class);
-
+        
         return currentSession.get(Usuario.class, id);
     }
+    
+    List<Usuario> findUsersByUsername() {
+		return null;
+	}
 
     @Override
     @Transactional
-    public void save(Usuario usuario) {
+    public String save(Usuario usuario) {
+    	String response;
         Session currentSession = entityManager.unwrap(Session.class);
         System.out.println("UserDAOImpl - usuario a crear: "+usuario.toString());
-        currentSession.save(usuario);
-        /*if(userHasValidUsername(usuario)) {
+        if(!userExistsWithUsername(currentSession, usuario.getUsername())) {
         	currentSession.save(usuario);
         	System.out.println("UserDAOImpl - usuario creado");
+        	response = "Usuario creado exitosamente: "+usuario.toString();
         }else {
         	System.out.println("UserDAOImpl - ya existe un usuario con ese nombre");
-        }*/
-        	
-        
+        	response = "Ya existe un usuario con ese nombre";
+        }
+        return response;
     }
-
-    private boolean userHasValidUsername(Usuario usuario) {
-		// TODO Auto-generated method stub
-		return false;
+    
+    private boolean userExistsWithUsername(Session currentSession, String username) {
+    	Query<Usuario> theQuery = currentSession.createQuery("select id from Usuario where username=:username");
+    	theQuery.setParameter("username", username);
+		return !theQuery.getResultList().isEmpty();
 	}
-
+    
 	@Override
     @Transactional
     public void deleteById(Long id) {
