@@ -9,6 +9,9 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface UsuarioRepository extends JpaRepository<Usuario, Long> {
 
+	@Query(value = "select exists (select 1 from usuario as u where u.email = :email and u.password = :password and u.username = :username)", nativeQuery = true)
+    boolean existsUsuario(@Param("email") String email, @Param("username") String username, @Param("password") String password);
+	
     @Query(value = "select exists (select 1 from usuario as u where u.email = :email)", nativeQuery = true)
     boolean existsByEmail(@Param("email") String email);
 
