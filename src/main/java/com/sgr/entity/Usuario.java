@@ -39,7 +39,5 @@ public class Usuario {
     @NotBlank
     private String password;
     
-    @Column(name="rol")
-    @NotNull
-    private Rol rol;
+    
 }
