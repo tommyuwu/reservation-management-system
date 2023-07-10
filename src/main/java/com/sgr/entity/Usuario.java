@@ -26,6 +26,10 @@ public class Usuario {
     @Column(name="id")
     private Long id;
     
+    @Column(name="nombre_completo")
+    @NotBlank
+    private String nombreCompleto;
+    
     @Column(name="username")
     @NotBlank
     private String username;
