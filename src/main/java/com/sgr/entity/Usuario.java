@@ -38,8 +38,4 @@ public class Usuario {
     @Column(name="password")
     @NotBlank
     private String password;
-    
-    @Column(name="rol")
-    @NotNull
-    private Rol rol;
 }

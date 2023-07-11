@@ -34,3 +34,4 @@ build/
 
 ### para no pifiar propiedades
 !**/src/main/resources/application.properties
+/bin/
