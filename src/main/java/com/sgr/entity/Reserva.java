@@ -23,6 +23,10 @@ public class Reserva {
     @Column(name="id_sala")
     @NotNull
     private Long idSala;
+    
+    @Column(name="id_equipamiento")
+    @NotNull
+    private Long idEquipameinto;
 
     @Column(name="id_cliente")
     @NotNull
