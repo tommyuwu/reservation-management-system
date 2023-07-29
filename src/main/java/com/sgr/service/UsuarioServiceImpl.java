@@ -41,6 +41,15 @@ public class UsuarioServiceImpl implements UsuarioService {
         if (usuarioRepository.existsByPassword(usuario.getPassword())) return new ApiResponse<>(HttpStatus.CONFLICT, "Contraseña no disponible.");
         return new ApiResponse<>(HttpStatus.OK, "Usuario registrado correctamente.", usuarioRepository.save(usuario));
     }
+    
+    @Override
+    public ApiResponse<Usuario> login(Usuario usuario){
+        if (usuarioRepository.existsUsuario(usuario.getEmail(), usuario.getUsername(), usuario.getPassword())){
+        	return new ApiResponse<>(HttpStatus.OK, "Login realizado correctamente.", usuario);
+        }
+        
+        return new ApiResponse<>(HttpStatus.CONFLICT, "Usuario invalido.", usuario);
+    }
 
 	@Override
     public ApiResponse<Usuario> deleteById(Long id) {

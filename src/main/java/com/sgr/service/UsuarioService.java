@@ -16,4 +16,6 @@ public interface UsuarioService {
     ApiResponse<Usuario> deleteById(Long id);
 
     ApiResponse<Usuario> update(Usuario usuario);
+    
+    ApiResponse<Usuario> login(Usuario usuario);
 }
